@@ -1,6 +1,10 @@
 
 <?php
-  require "session_loginChat.php";
+include("../config.php");
+include('../database/function.php');
+//$username = $_POST['username'];
+//$password = $_POST['password'];
+  //require "session_loginChat.php";
 ?>
 
 
@@ -13,14 +17,14 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link rel="icon" type="image/png" href="LogoUniud.png" sizes="32x32">
  <!-- GOOGLE FONTS  -->
   <link href="https://fonts.googleapis.com/css?family=Raleway|Satisfy" rel="stylesheet">
 
 <!-- FONT AWESOME  -->
-  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
 
 </head>
 <body>
@@ -62,7 +66,7 @@
 
       </div>
     </div>
-    <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
+    <div class="parallax"><img src="../img/background1.jpg" alt="Unsplashed background img 1"></div>
   </div>
 
   <!-- Risultati chiamata -->
@@ -70,10 +74,24 @@
    <div class="container">
       <h1>Account utente</h1>
       <h2>Pagina personale</h2>
+<?php
+      //controllo campi completati
+    if($username != "" && $password != ""){
+    
+      //richiamo la funzione inserisci_utente();
+      check_users($username, $password);  //DA COMPLETARE
+      
+    }
+    else{
+    echo '<div class="alert alert-danger">
+        <strong>Compila tutti i campi, grazie.</strong>
+        </div>';
+        header( "refresh:3;url=../index.php" );
+    }
+?>
 
 
-
-      <a href="logout_page.php" class="btn btn-theme">Effettua Logout</a>;
+     <a href="logout_page.php" class="btn btn-theme">Effettua Logout</a>;
     </div>
   </section>
 
@@ -102,8 +120,8 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+  <script src="../js/materialize.js"></script>
+  <script src="../js/init.js"></script>
 
   </body>
 </html>

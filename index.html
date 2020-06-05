@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -93,6 +94,7 @@
     </div>
   </div>
 
+
 <!-- REGISTRAZIONE -->
   <div id="registrazione" class="parallax-container valign-wrapper">
     <div class="section-registrazione no-pad-bot">
@@ -103,35 +105,47 @@
           <h5 class=" col s12 light">Scrivi ora ai tuoi amici!</h5>
           <div class="row">
             <div class="input-field col s12 l6 offset-l3">
-                <input id="username" type="text" class="validate center white black-text" placeholder="Scegli il tuo username">
-                <input id="password" type="password" class="validate center white black-text" placeholder="Scegli la tua password">
+              <form action="database_inserisci_utente.php" method="POST" id="subscribe-form" name="subscribe-form" class="validate" target="_blank"> 
+                  <input id="username" type="text" name = "username" required class="validate center white black-text" placeholder="Scegli il tuo username">
+                   
+                   <div id="message_user">
+                    <p>Lo username deve contenere:</p>
+                    <p id="username_length" class="invalid">Minimo <b>4 caratteri</b></p>
+                  </div>
 
-                <!-- Begin Mailchimp Signup Form -->
-                <div id="mc_embed_signup">
-                  <form action="https://gmail.us10.list-manage.com/subscribe/post?u=df76f35ba4806ebaae3da22b9&amp;id=50c37ec9a8" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                    <div id="mc_embed_signup_scroll">
-                    
-                    <input id="email" type="email" value="" name="EMAIL" class="validate center white black-text"  id="mce-EMAIL" placeholder="Inserisci la tua email" required>
-                    <button class="btn btn-registrazione waves-effect waves-light red lighten-1" type="submit" name="action">Voglio registrarmi</button>
-                    </div>
-                  </form>
-                 </div>
+                  <input id="password" type="password"  name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="validate center white black-text" placeholder="Scegli la tua password" required>
+                 
+                  <div id="message">
+                    <p>La password deve contenere:</p>
+                    <p id="letter" class="invalid">Una lettera <b>minuscola</b></p>
+                    <p id="capital" class="invalid">Una lettera <b>maiuscola</b></p>
+                    <p id="number" class="invalid">Un <b>numero</b></p>
+                    <p id="length" class="invalid">Minimo <b>8 caratteri</b></p>
+                  </div>
 
-              <!--End mc_embed_signup-->
-<!--
-                <input id="email" type="email" class="validate center white black-text" placeholder="Inserisci la tua email">
-                <button class="btn btn-registrazione waves-effect waves-light red lighten-1" type="submit" name="action">Voglio registrarmi!</button>
-              -->
+                  <input id="password_2" type="password"  name="password_2" class="validate center white black-text" placeholder="Ripeti la tua password" required>
+                  <input id="email" type="email" value="" name="email" class="validate center white black-text" placeholder="Inserisci la tua email" required>
+                  
+                  <button class="btn btn-registrazione waves-effect waves-light red lighten-1" type="submit" value="submit" name="action">Voglio registrarmi</button>                 
+              </form>
+
+               
+                
+              <form action="pwd_generator_result.php" name='form' target="_blank">
+                <p align="center">
+                  <input type='submit' value='suggerisci password sicura' name='submit' class="btn btn-theme"/><br><br><br><br>
+                </p>
+              </form>
             </div>
            </div>
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="background2.jpg" alt="Immagine mancante"></div>
+    <div class="parallax"><img src="background3.jpg" alt="Immagine mancante"></div>
   </div>
 
 
-<!-- accedi -->
+<!-- Accesso -->
   <div id="accedi" class="container">
     <div class="section">
 
@@ -139,10 +153,19 @@
         <div class="col s12 center">
           <i class="material-icons invita-icon red-text text-lighten-1">share</i>
           <h3>Invita i tuoi amici alla tua chat</h3>
-         <h5 class="invita-subtitle col s12 light">Accedi e crea la tua chat room
+         <h5 class="invita-subtitle col s12 light">Accedi e invita alla tua chat room
           <br>
           Invia il link ai tuoi amici e inizia a chattare</h5>
-          <button class="col l6 offset-l3 btn btn-invita waves-effect waves-light red lighten-1" type="submit" name="action">Accedi</button>
+          <div classe="row">
+            <div class="input-field col s12 l6 offset-l3">
+              <form action="mockup.php" method="POST" id="login-form" name="login-form" class="validate" target="_blank"> 
+                      <input id="username" type="text" name = "username" class="center white black-text" placeholder="Inserisci il tuo username">
+                      <input id="password" type="password"  name="password" class="center white black-text" placeholder="Inserisci la tua password">
+                      <input type="hidden" name="login" value="login"/>
+                    <button class="col l6 offset-l3 btn btn-invita waves-effect waves-light red lighten-1" type="submit" name="login">Accedi</button>
+              </form>
+          </div>
+       </div>
         </div>
       </div>
 
