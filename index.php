@@ -1,7 +1,6 @@
 
 <?php
-session_start();
-require 'pwd_generator_class.php';
+require 'user/pwd_generator_class.php';
 
 ?>
 
@@ -63,7 +62,7 @@ require 'pwd_generator_class.php';
 
       </div>
     </div>
-    <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
+    <div class="parallax"><img src="img/background1.jpg" alt="Unsplashed background img 1"></div>
   </div>
 
 
@@ -109,6 +108,7 @@ require 'pwd_generator_class.php';
           <i class="material-icons registrazione-icon">email</i>
           <h3 class=" col s12 light">Registrati al servizio</h3>
           <h5 class=" col s12 light">Scrivi ora ai tuoi amici!</h5>
+
           <div class="row">
             <div class="input-field col s12 l6 offset-l3">
             	<form action="database_inserisci_utente.php" method="POST" id="subscribe-form" name="subscribe-form" class="validate" target="_blank"> 
@@ -119,7 +119,7 @@ require 'pwd_generator_class.php';
                     <p id="username_length" class="invalid">Minimo <b>4 caratteri</b></p>
                   </div>
 
-	                <input id="password" type="password"  name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="validate center white black-text" placeholder="Scegli la tua password" required>
+	                <input id="password" type="password"  name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" maxlength="72" class="validate center white black-text" placeholder="Scegli la tua password" required>
                  
                   <div id="message">
                     <p>La password deve contenere:</p>
@@ -129,7 +129,7 @@ require 'pwd_generator_class.php';
                     <p id="length" class="invalid">Minimo <b>8 caratteri</b></p>
                   </div>
 
-                  <input id="password_2" type="password"  name="password_2" class="validate center white black-text" placeholder="Ripeti la tua password" required>
+                  <input id="password_2" type="password"  name="password_2" class="validate center white black-text" placeholder="Ripeti la tua password" maxlength="72" required>
 	                <input id="email" type="email" value="" name="email" class="validate center white black-text" placeholder="Inserisci la tua email" required>
 	                
 	                <button class="btn btn-registrazione waves-effect waves-light red lighten-1" type="submit" value="submit" name="action">Voglio registrarmi</button>                 
@@ -147,7 +147,7 @@ require 'pwd_generator_class.php';
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="background3.jpg" alt="Immagine mancante"></div>
+    <div class="parallax"><img src="img/background3.jpg" alt="Immagine mancante"></div>
   </div>
 
 
@@ -164,7 +164,7 @@ require 'pwd_generator_class.php';
           Invia il link ai tuoi amici e inizia a chattare</h5>
           <div classe="row">
 	          <div class="input-field col s12 l6 offset-l3">
-		          <form action="mockup.php" method="POST" id="login-form" name="login-form" class="validate" target="_blank"> 
+		          <form action="user/login.php" method="POST" id="login-form" name="login-form" class="validate" target="_blank"> 
 			                <input id="username" type="text" name = "username" class="center white black-text" placeholder="Inserisci il tuo username">
 			                <input id="password" type="password"  name="password" class="center white black-text" placeholder="Inserisci la tua password">
 			                <input type="hidden" name="login" value="login"/>

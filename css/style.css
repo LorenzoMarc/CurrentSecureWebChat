@@ -33,7 +33,6 @@ p {
 }
 
 
-
 .button-collapse {
   color: #ef5350;
 
@@ -71,6 +70,7 @@ p {
     position: absolute;
     top: 40%;
   }
+
   #index-banner .section {
     top: 10%;
   }
@@ -208,3 +208,33 @@ footer.page-footer {
   color: #ef3550;
 }
 
+.profile{
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 20px ;
+}
+
+.profile_image{
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin:0 auto 20px auto;
+  display: block;
+}
+
+.profile_name{
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.profile_title{
+  margin-bottom: 20px;
+}
+
+.profile_details{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9em;
+}
