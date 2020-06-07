@@ -1,12 +1,12 @@
-
-<?php
-error_reporting (0); // Do not show anything
-session_start();
+<?php 
+//error_reporting (0); // Do not show anything
 include("../config.php");
-include('../database/function.php');
-//$username = $_POST['username'];
-//$password = $_POST['password'];
-  //require "session_loginChat.php";
+include('function.php');
+
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+  $password_2 = $_POST['password_2'];
+	$email = $_POST['email'];
 ?>
 
 
@@ -21,7 +21,7 @@ include('../database/function.php');
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="icon" type="image/png" href="LogoUniud.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="../img/LogoUniud.png" sizes="32x32">
  <!-- GOOGLE FONTS  -->
   <link href="https://fonts.googleapis.com/css?family=Raleway|Satisfy" rel="stylesheet">
 
@@ -38,64 +38,52 @@ include('../database/function.php');
         <a href="#" class="brand-logo">SecureWebChat</a>
          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="#servizio">Servizio</a></li>
-          <li><a href="#registrazione">Registrati</a></li>
-          <li><a href="#accedi">Accedi</a></li>
+          <li><a href="../index.php#servizio">Servizio</a></li>
+          <li><a href="../index.php#registrazione">Registrati</a></li>
+          <li><a href="../index.php#accedi">Accedi</a></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li><a href="#servizio">Servizio</a></li>
-          <li><a href="#registrazione">Registrati</a></li>
-          <li><a href="#accedi">Accedi</a></li>
+          <li><a href="../index.php#servizio">Servizio</a></li>
+          <li><a href="../index.php#registrazione">Registrati</a></li>
+          <li><a href="../index.php#accedi">Accedi</a></li>
       </ul>
       </div>
     </nav>
   </div>
 
+<section id="content">
+	<div class="container">
+		<h1>Registrazione</h1>
+		<h3>Risultato:</h3>
+		
 
-<!-- INTRO -->
-  <div id="index-banner" class="parallax-container">
-    <div class="section-intro no-pad-bot">
-      <div class="container">
-        <br><br>
-        <h1 class="header center white-text">Invita e chatta in maniera sicura.</h1>
-        <div class="row center">
-          <h5 class="header-subtitle col s12 light">Registrati e invita i tuoi amici</h5>
-        </div>
-        <div class="row center">
-          <a href="#servizio" id="" class="btn-large waves-effect waves-light red lighten-1">Scopri come funziona</a>
-        </div>
-        <br><br>
-
-      </div>
-    </div>
-    <div class="parallax"><img src="../img/background1.jpg" alt="Unsplashed background img 1"></div>
-  </div>
-
-  <!-- Risultati chiamata -->
-  <section id="content">
-   <div class="container">
-      <h1>Account utente</h1>
-      <h2>Pagina personale</h2>
-<?php
-      //controllo campi completati
-    if($username != "" && $password != ""){
-      
-      //richiamo la funzione inserisci_utente();
-      check_users($username, $password);
-      
-    }
-    else{
+	<?php
+		//controllo campi completati
+  if ($password != $password_2){
     echo '<div class="alert alert-danger">
-        <strong>Compila tutti i campi, grazie.</strong>
+        <h3><strong>Le due password devono coincidere</strong></h3>
         </div>';
-        header( "refresh:3;url=../index.php" );
-    }
-?>
+        header( "refresh:4;url=../index.php" );
+    }else if(strlen($username)<4){
+      echo "<h3>Username troppo corto!</h3>";
+      header( "refresh:4;url=../index.php" );
+      }
+      else if($username!="" && $password!="" && $password_2!="" && $email!=""){
+			//richiamo la funzione inserisci_utente();
+			inserisci_utente($username, $password, $email);
+		}
+		else{
+		echo '<div class="alert alert-danger">
+				<h3><strong>Compila tutti i campi, grazie.</strong></h3>
+			  </div>';
+			  header( "refresh:4;url=../index.php" );
+		}
+	?>
 
-    </div>
-  </section>
 
 
+	</div> <!-- /.container -->
+	</section>
 
 
 
@@ -120,8 +108,8 @@ include('../database/function.php');
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="../js/materialize.js"></script>
-  <script src="../js/init.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
 
   </body>
 </html>

@@ -20,18 +20,28 @@ function dbConnect() {
 //inserimento dati utente, password cifrata con brcrypt
 function inserisci_utente($username, $password, $email){
 	$conn=dbConnect();
-	
-	$password = cipher_content($password);
 
-	$sql="INSERT INTO ch_users (user_username, user_password, user_email) VALUES ('". $username ."', '". $password ."', '". $email ."')";
-	if(!$conn->query($sql)){  //stampo un errore
-		 echo '<div class="alert alert-danger"><strong>Attenzione errore nella query:</strong> ' . $sql . "\n" . mysql_error() .'</div>';
-	}
-	else{
-		echo '<div class="alert alert-success">
-				<strong>Utente inserito con successo</strong>
-			  </div>';
-		header( "refresh:3;url=database_index.php" );
+	//SQL INJECTION PROTECTION
+	$username = str_replace("'", "", $username);
+	$password = str_replace("'", "", $username);
+	$inject_secure = preg_match('/\'|\*|\bSELECT\b|\bOR\b|\bWHERE\b|\bselect\b|\bor\b|\bwhere\b/', $username);
+	if ($inject_secure == 1) {
+		echo '<h3><div class="alert alert-danger"><strong>inserimento non valido</strong> </h3></div>';
+		 header( "refresh:30;url=../index.php" );
+	}else{
+		$password = cipher_content($password);
+
+		$sql="INSERT INTO ch_users (user_username, user_password, user_email) VALUES ('". $username ."', '". $password ."', '". $email ."')";
+		if(!$conn->query($sql)){  //stampo un errore
+			 echo '<h3><div class="alert alert-danger"><strong>Username già esistente</strong> </h3></div>';
+			 header( "refresh:3;url=../index.php" );
+		}
+		else{
+			echo '<div class="alert alert-success">
+					<h3><strong>Utente registrato con successo</strong></h3>
+				  </div>';
+			header( "refresh:3;url=../index.php#accedi" );
+		}
 	}
 	
 	mysqli_close($conn); 
@@ -117,32 +127,42 @@ login($email,$password);
 
 function check_users($username, $password) {
 	$conn=dbConnect();
+
+	//SQL INJECTION PROTECTION
+	$username = str_replace("'", "", $username);
+	$password = str_replace("'", "", $username);
+	$inject_secure = preg_match('/\'|\*|\bSELECT\b|\bOR\b|\bWHERE\b|\bselect\b|\bor\b|\bwhere\b/', $username);
+	if ($inject_secure == 1) {
+		echo '<h3><div class="alert alert-danger"><strong>inserimento non valido</strong> </h3></div>';
+		 header( "refresh:3;url=../index.php" );
+	}else{
 	
-	$sql="SELECT * FROM ch_users WHERE user_username = '$username'";
-	$result = $conn->query($sql);
-	if(mysqli_num_rows($result)==1){
-		$row = mysqli_fetch_assoc($result);
-		if (password_verify($password, $row['user_password'])) {
-                $_SESSION['ID'] = md5($row['user_id']. $_SERVER ['REMOTE_ADDR']);
-                setcookie('username', $username);
-                echo '<div class="alert alert-success">
-				<strong>Credenziali corrette, accesso eseguito</strong>
-			  </div>';
-			  header( "refresh:3;url=../user/user_page.php" );
-		} else {
-			echo '<div class="alert alert-success">
-				<strong>Password errata</strong>
-			  </div>';
-			header( "refresh:3;url=../index.php" );
-			}
-		
-		} else {
+		$sql="SELECT * FROM ch_users WHERE user_username = '$username'";
+		$result = $conn->query($sql);
+		if(mysqli_num_rows($result)==1){
+			$row = mysqli_fetch_assoc($result);
+			if (password_verify($password, $row['user_password'])) {
+	                $_SESSION['ID'] = md5($row['user_id']. $_SERVER ['REMOTE_ADDR']);
+	                setcookie('username', $username);
+	                echo '<div class="alert alert-success">
+					<strong>Credenziali corrette, accesso eseguito</strong>
+				  </div>';
+				  header( "refresh:3;url=../user/user_page.php" );
+			} else {
+				echo '<div class="alert alert-success">
+					<strong>Password errata</strong>
+				  </div>';
+				header( "refresh:3;url=../index.php" );
+				}
 			
-			echo '<div class="alert alert-success">
-					<strong>Nome utente non valido</strong>
-		 		</div>';
-			header( "refresh:3;url=../index.php" );
-		}
+			} else {
+				
+				echo '<div class="alert alert-success">
+						<strong>Nome utente non valido</strong>
+			 		</div>';
+				header( "refresh:3;url=../index.php" );
+			}
+	}
 		
 	
 	mysqli_close($conn); 

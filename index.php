@@ -1,5 +1,6 @@
 
 <?php
+error_reporting (0); // Do not show anything
 session_start();
 require 'user/pwd_generator_class.php';
 
@@ -113,17 +114,17 @@ require 'user/pwd_generator_class.php';
           <div class="row">
             <div class="input-field col s12 l6 offset-l3">
             	<form action="database/database_inserisci_utente.php" method="POST" id="subscribe-form" name="subscribe-form" class="validate" target="_blank">
-  	                <input id="username" type="text" name = "username" required class="validate center white black-text" placeholder="Scegli il tuo username">
+  	                <input id="username" type="text" name = "username" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,32}" required class="validate center white black-text" placeholder="Scegli il tuo username" required validete>
 
                    <div id="message_user">
-                    <p>Lo username deve contenere:</p>
+                    <p>Lo username <b>non</b> accetta caratteri speciali e deve contenere:</p>
                     <p id="username_length" class="invalid">Minimo <b>4 caratteri</b></p>
                   </div>
 
 	                <input id="password" type="password"  name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" maxlength="72" class="validate center white black-text" placeholder="Scegli la tua password" required>
                  
                   <div id="message">
-                    <p>La password deve contenere:</p>
+                    <p>La password <b>non accetta caratteri speciali</b> e deve contenere:</p>
                     <p id="letter" class="invalid">Una lettera <b>minuscola</b></p>
                     <p id="capital" class="invalid">Una lettera <b>maiuscola</b></p>
                     <p id="number" class="invalid">Un <b>numero</b></p>
@@ -166,8 +167,8 @@ require 'user/pwd_generator_class.php';
           <div classe="row">
 	          <div class="input-field col s12 l6 offset-l3">
 		          <form action="user/login.php" method="POST" id="login-form" name="login-form" class="validate" target="_blank"> 
-			                <input id="username" type="text" name = "username" class="center white black-text" placeholder="Inserisci il tuo username">
-			                <input id="password" type="password"  name="password" class="center white black-text" placeholder="Inserisci la tua password">
+			                <input id="username" type="text" name = "username" class="center white black-text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,32}" placeholder="Inserisci il tuo username">
+			                <input id="password" type="password"  name="password" class="center white black-text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Inserisci la tua password">
 			                <input type="hidden" name="login" value="login"/>
 		          			<button class="col l6 offset-l3 btn btn-invita waves-effect waves-light red lighten-1" type="submit" name="login">Accedi</button>
 		      		</form>

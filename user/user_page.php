@@ -1,5 +1,6 @@
 
 <?php
+error_reporting (0); // Do not show anything
 require "session_login.php";
 
 include("../config.php");
