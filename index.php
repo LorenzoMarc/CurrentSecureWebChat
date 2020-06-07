@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 require 'user/pwd_generator_class.php';
 
 ?>
@@ -111,9 +112,9 @@ require 'user/pwd_generator_class.php';
 
           <div class="row">
             <div class="input-field col s12 l6 offset-l3">
-            	<form action="database_inserisci_utente.php" method="POST" id="subscribe-form" name="subscribe-form" class="validate" target="_blank"> 
-	                <input id="username" type="text" name = "username" required class="validate center white black-text" placeholder="Scegli il tuo username">
-                   
+            	<form action="database/database_inserisci_utente.php" method="POST" id="subscribe-form" name="subscribe-form" class="validate" target="_blank">
+  	                <input id="username" type="text" name = "username" required class="validate center white black-text" placeholder="Scegli il tuo username">
+
                    <div id="message_user">
                     <p>Lo username deve contenere:</p>
                     <p id="username_length" class="invalid">Minimo <b>4 caratteri</b></p>
@@ -137,7 +138,7 @@ require 'user/pwd_generator_class.php';
 
                
                 
-              <form action="pwd_generator_result.php" name='form' target="_blank">
+              <form action="user/pwd_generator_result.php" name='form' target="_blank">
                 <p align="center">
                   <input type='submit' value='suggerisci password sicura' name='submit' class="btn btn-theme"/><br><br><br><br>
                 </p>
@@ -158,7 +159,7 @@ require 'user/pwd_generator_class.php';
       <div class="row">
         <div class="col s12 center">
           <i class="material-icons invita-icon red-text text-lighten-1">share</i>
-          <h3>Invita i tuoi amici alla tua chat</h3>
+          <h3>Accedi e invita i tuoi amici alla tua chat</h3>
          <h5 class="invita-subtitle col s12 light">Accedi e invita alla tua chat room
           <br>
           Invia il link ai tuoi amici e inizia a chattare</h5>
@@ -203,6 +204,5 @@ require 'user/pwd_generator_class.php';
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
-
   </body>
 </html>

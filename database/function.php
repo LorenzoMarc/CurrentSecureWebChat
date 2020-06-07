@@ -123,7 +123,8 @@ function check_users($username, $password) {
 	if(mysqli_num_rows($result)==1){
 		$row = mysqli_fetch_assoc($result);
 		if (password_verify($password, $row['user_password'])) {
-                $_SESSION['id'] = $row['user_id'];
+                $_SESSION['ID'] = md5($row['user_id']. $_SERVER ['REMOTE_ADDR']);
+                setcookie('username', $username);
                 echo '<div class="alert alert-success">
 				<strong>Credenziali corrette, accesso eseguito</strong>
 			  </div>';

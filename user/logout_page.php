@@ -1,6 +1,6 @@
 
 <?php
-  require "session_loginChat.php";
+require "session_login.php";
 ?>
 
 
@@ -13,14 +13,14 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="icon" type="image/png" href="LogoUniud.png" sizes="32x32">
+  <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="icon" type="image/png" href="../img/LogoUniud.png" sizes="32x32">
  <!-- GOOGLE FONTS  -->
   <link href="https://fonts.googleapis.com/css?family=Raleway|Satisfy" rel="stylesheet">
 
 <!-- FONT AWESOME  -->
-  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
 
 </head>
 <body>
@@ -45,40 +45,14 @@
     </nav>
   </div>
 
-
-<!-- INTRO -->
-  <div id="index-banner" class="parallax-container">
-    <div class="section-intro no-pad-bot">
-      <div class="container">
-        <br><br>
-        <h1 class="header center white-text">Invita e chatta in maniera sicura.</h1>
-        <div class="row center">
-          <h5 class="header-subtitle col s12 light">Registrati e invita i tuoi amici</h5>
-        </div>
-        <div class="row center">
-          <a href="#servizio" id="" class="btn-large waves-effect waves-light red lighten-1">Scopri come funziona</a>
-        </div>
-        <br><br>
-
-      </div>
-    </div>
-    <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
-  </div>
-
   <section id="content">
   <div class="container">
-    <h1>Sessions</h1>
-    <h2>Pagina di Logout</h2>
+    <h3>Hai effettuato il logout</h3>
     <?php
-    
     session_destroy();
-    ?>
-    <form action="index.php" name='logout' method='get'>
-      <p align="center"><input type='submit' value='Torna alla Home' class="btn btn-theme"/><br/>
-      
 
-    </p>
-  </form>    
+    header("refresh:4; url=https://localhost/SecureWebPage-master/index.php");
+    ?>
 
 
 

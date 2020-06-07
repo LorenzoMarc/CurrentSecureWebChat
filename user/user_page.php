@@ -1,5 +1,8 @@
 
 <?php
+require "session_login.php";
+
+include("../config.php");
 
 //$username = $_POST['$username'];
 //$email = $_POST['$email'];
@@ -36,12 +39,12 @@
         <ul class="right hide-on-med-and-down">
           <li><a href="#profilo">Profilo</a></li>
           <li><a href="#chat">Chat</a></li>
-          <li><a href="#logout">Logout</a></li>
+          <li><a href="logout_page.php">Logout</a></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <li><a href="#profilo">Profilo</a></li>
           <li><a href="#chat">Chat</a></li>
-          <li><a href="#logout">Logout</a></li>
+          <li><a href="logout_page.php">Logout</a></li>
       </ul>
       </div>
     </nav>
@@ -52,9 +55,14 @@
   <div>
   
       <div class="container">
-        <h3 class="center black-text">Benvenuto $utente</h3>
+        <?php
+        echo "<h3 class=\"center black-text\">Benvenuto " . $_COOKIE['username'] . "</h3>";
+        ?>
         <div class="row center">
-          <a href="#chat" id="" class="btn-large waves-effect waves-light red lighten-1">Avvia una chat!</a>
+          <form action="../chat/chat_page.php" method="POST" id="chat-form" name="chat-form" class="validate" target="_blank">            
+         
+            <button class="btn-large waves-effect waves-light red lighten-1" type="submit" name="chat">Avvia una chat!</button>
+          </form>
         </div>
       </div>
    
@@ -72,8 +80,9 @@
             
             <div class="profile">
               <img src="../img/background1.jpg" alt="Profile Image" class="profile_image">
-              <div class="profile_name">Nome cognome</div>
-              <div class="profile_title">titolo</div>
+              <?php
+                echo "<div class=\"profile_name\">".$_COOKIE['username']."</div>";
+              ?>
               <div class="profile_details"><i class="material-icons">chat</i> mie chat</div>
             </div>
 

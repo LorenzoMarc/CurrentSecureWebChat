@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 include("../config.php");
 include('../database/function.php');
 //$username = $_POST['username'];
@@ -77,9 +78,9 @@ include('../database/function.php');
 <?php
       //controllo campi completati
     if($username != "" && $password != ""){
-    
+      
       //richiamo la funzione inserisci_utente();
-      check_users($username, $password);  //DA COMPLETARE
+      check_users($username, $password);
       
     }
     else{

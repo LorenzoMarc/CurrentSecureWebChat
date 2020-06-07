@@ -13,14 +13,14 @@ require_once 'pwd_generator_class.php';
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link rel="icon" type="image/png" href="LogoUniud.png" sizes="32x32">
  <!-- GOOGLE FONTS  -->
   <link href="https://fonts.googleapis.com/css?family=Raleway|Satisfy" rel="stylesheet">
 
 <!-- FONT AWESOME  -->
-  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
 
 </head>
 <body>
@@ -45,32 +45,10 @@ require_once 'pwd_generator_class.php';
     </nav>
   </div>
 
-
-<!-- INTRO -->
-  <div id="index-banner" class="parallax-container">
-    <div class="section-intro no-pad-bot">
-      <div class="container">
-        <br><br>
-        <h1 class="header center white-text">Invita e chatta in maniera sicura.</h1>
-        <div class="row center">
-          <h5 class="header-subtitle col s12 light">Registrati e invita i tuoi amici</h5>
-        </div>
-        <div class="row center">
-          <a href="#servizio" id="" class="btn-large waves-effect waves-light red lighten-1">Scopri come funziona</a>
-        </div>
-        <br><br>
-
-      </div>
-    </div>
-    <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
-  </div>
-
   <!-- Risultati chiamata -->
   <section id="content">
   <div class="container">
-    <h1>Strong password generator</h1>
-    <br/>
-    <br/>
+    
 
     <div id="myContent" style="text-align:center;">
       <?php 
@@ -81,7 +59,10 @@ require_once 'pwd_generator_class.php';
       ?>
       <br/>
       <br/>
-    <a href="index.php" class="btn btn-theme">Torna indietro</a>
+
+
+
+    <a href="../index.php" class="btn btn-theme">Torna indietro</a>
     </div>
 
   </div> <!-- /.container -->
