@@ -60,9 +60,7 @@ require_once 'pwd_generator_class.php';
       <br/>
       <br/>
 
-
-
-    <a href="../index.php" class="btn btn-theme">Torna indietro</a>
+    <button class="btn btn-theme" onclick="goBack()">Indietro</button>
     </div>
 
   </div> <!-- /.container -->
@@ -92,6 +90,11 @@ require_once 'pwd_generator_class.php';
 
 
   <!--  Scripts-->
+  <script type="text/javascript">
+    function goBack() {
+      window.history.back();
+    }
+  </script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>

@@ -238,3 +238,20 @@ footer.page-footer {
   justify-content: center;
   font-size: 0.9em;
 }
+
+.tablerow { padding:20px; }
+
+
+.login-input {
+  border: #CCC 1px solid;
+    padding: 10px 20px;
+  border-radius:4px;
+}
+
+.tableheader { font-size: 20px; }
+
+.error_message {
+  color: #DF001E;
+    background: #ffb5b5;
+    border: #c76969 1px solid;
+}

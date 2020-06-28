@@ -4,6 +4,7 @@ error_reporting (0); // Do not show anything
 require "session_login.php";
 
 include("../config.php");
+require("../database/function.php");
 
 //$username = $_POST['$username'];
 //$email = $_POST['$email'];
@@ -38,13 +39,9 @@ include("../config.php");
         <a href="https://localhost/SecureWebPage-master/index.php" class="brand-logo">SecureWebChat</a>
          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="#profilo">Profilo</a></li>
-          <li><a href="#chat">Chat</a></li>
           <li><a href="logout_page.php">Logout</a></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li><a href="#profilo">Profilo</a></li>
-          <li><a href="#chat">Chat</a></li>
           <li><a href="logout_page.php">Logout</a></li>
       </ul>
       </div>
@@ -53,21 +50,13 @@ include("../config.php");
 
 
 <!-- INTRO -->
-  <div>
+ 
   
       <div class="container">
         <?php
         echo "<h3 class=\"center black-text\">Benvenuto " . $_COOKIE['username'] . "</h3>";
         ?>
-        <div class="row center">
-          <form action="../chat/chat_page.php" method="POST" id="chat-form" name="chat-form" class="validate" target="_blank">            
-         
-            <button class="btn-large waves-effect waves-light red lighten-1" type="submit" name="chat">Avvia una chat!</button>
-          </form>
-        </div>
       </div>
-   
-  </div>
 
 
 
@@ -77,14 +66,43 @@ include("../config.php");
     <div class="section">
       <div class="col-profilo">
         <div class="row">
-          <div class="col s12 l6 offset-l3 ">
+          <div class="col s12 l6 offset-l3 "> 
             
             <div class="profile">
               <img src="../img/background1.jpg" alt="Profile Image" class="profile_image">
               <?php
                 echo "<div class=\"profile_name\">".$_COOKIE['username']."</div>";
-              ?>
-              <div class="profile_details"><i class="material-icons">chat</i> mie chat</div>
+              ?>           
+            </div>
+            <div class="center">
+              <h3>Lista degli utenti</h3>                
+              <?php
+                //stampo la lista degli utenti
+                $users = lista_utenti($_COOKIE['username']);  //se la lista degli utenti non è vuota stampo una tabella
+                if(!empty($users)){
+                  echo '<div class="center col s12">
+                          <table>
+                            <tr>                      
+                              <th>Username</th>                    
+                              <th>Chat</th>
+                            </tr>
+                        </div>';
+                  foreach ($users as $user) {  //ad ogni iterazione il valore di $users (che è un array) viene assegnato a $user
+                    echo '<tr>                       
+                            <td>' . $user[1] . ' </td>                       
+                            <td> <form action="../chat/chat_page.php" method="POST" id="chat-form" name="chat-form" class="validate" target="_blank">                     
+                            <button class="btn-large waves-effect waves-light red lighten-1" type="submit" name="chat">Avvia una chat!</button>
+                            </td>
+                          </tr>' ;
+                  }
+                  echo '</table>';
+                }
+                else{
+                  echo '<div class="alert alert-warning">
+                      <strong>Nessun utente presente sul database</strong>
+                      </div>';
+                }
+            ?>
             </div>
 
           </div>
@@ -92,7 +110,6 @@ include("../config.php");
       </div>
     </div>
   </div>
-
 
  <!-- FOOTER -->
   <footer class="page-footer ">
