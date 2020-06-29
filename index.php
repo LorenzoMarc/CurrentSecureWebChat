@@ -1,7 +1,6 @@
-
 <?php
 error_reporting (0); // Do not show anything
-session_start();
+
 require 'user/pwd_generator_class.php';
 
 ?>
@@ -53,9 +52,9 @@ require 'user/pwd_generator_class.php';
     <div class="section-intro no-pad-bot">
       <div class="container">
         <br><br>
-        <h1 class="header center white-text">Invita e chatta in maniera sicura.</h1>
+        <h1 class="header center white-text">Registrati e chatta in maniera sicura.</h1>
         <div class="row center">
-          <h5 class="header-subtitle col s12 light">Registrati e invita i tuoi amici</h5>
+          <h5 class="header-subtitle col s12 light">Scrvi a tutti gli utenti in sicurezza</h5>
         </div>
         <div class="row center">
           <a href="#servizio" id="" class="btn-large waves-effect waves-light red lighten-1">Scopri come funziona</a>
@@ -79,6 +78,7 @@ require 'user/pwd_generator_class.php';
             <div class="icon-block">
               <h2 class="center red-text text-lighten-1"><i class="material-icons">https</i></h2>
               <h5 class="center">Connessione sicura HTTPS</h5>
+              <p class="center red-text text-lighten-1"><b>La connessione è cifrata. Gli spioni non vedono nulla.<b></p>
             </div>
           </div>
 
@@ -86,6 +86,7 @@ require 'user/pwd_generator_class.php';
             <div class="icon-block">
               <h2 class="center red-text text-lighten-1"><i class="material-icons">message</i></h2>
               <h5 class="center">Chatta con chi vuoi tu</h5>
+              <p class="center red-text text-lighten-1"><b>Puoi scrivere a tutti gli utenti registrati.<b></p>
              </div>
           </div>
 
@@ -93,6 +94,7 @@ require 'user/pwd_generator_class.php';
             <div class="icon-block">
               <h2 class="center red-text text-lighten-1"><i class="material-icons">share</i></h2>
               <h5 class="center">Invita i tuoi amici</h5>
+              <p class="center red-text text-lighten-1"><b>Invita i tuoi amici a registrarsi!<b></p>
             </div>
           </div>
         </div>
@@ -113,15 +115,15 @@ require 'user/pwd_generator_class.php';
 
           <div class="row">
             <div class="input-field col s12 l6 offset-l3">
-            	<form action="database/database_inserisci_utente.php" method="POST" id="subscribe-form" name="subscribe-form" class="validate" target="_blank">
-  	                <input id="username" type="text" name = "username" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,32}" required class="validate center white black-text" placeholder="Scegli il tuo username" required validete>
+              <form action="database/inserisci_utente.php" method="POST" id="subscribe-form" name="subscribe-form" class="validate" target="_blank">
+                    <input id="username" type="text" name = "username" pattern="(?=.*[a-z]).{4,32}" required class="validate center white black-text" placeholder="Scegli il tuo username" required validete>
 
                    <div id="message_user">
                     <p>Lo username <b>non</b> accetta caratteri speciali e deve contenere:</p>
                     <p id="username_length" class="invalid">Minimo <b>4 caratteri</b></p>
                   </div>
 
-	                <input id="password" type="password"  name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" maxlength="72" class="validate center white black-text" placeholder="Scegli la tua password" required>
+                  <input id="password" type="password"  name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" maxlength="72" class="validate center white black-text" placeholder="Scegli la tua password" required>
                  
                   <div id="message">
                     <p>La password <b>non accetta caratteri speciali</b> e deve contenere:</p>
@@ -132,14 +134,14 @@ require 'user/pwd_generator_class.php';
                   </div>
 
                   <input id="password_2" type="password"  name="password_2" class="validate center white black-text" placeholder="Ripeti la tua password" maxlength="72" required>
-	                <input id="email" type="email" value="" name="email" class="validate center white black-text" placeholder="Inserisci la tua email" required>
-	                
-	                <button class="btn btn-registrazione waves-effect waves-light red lighten-1" type="submit" value="submit" name="action">Voglio registrarmi</button>                 
+                  <input id="email" type="email" value="" name="email" class="validate center white black-text" placeholder="Inserisci la tua email" required>
+                  
+                  <button class="btn btn-registrazione waves-effect waves-light red lighten-1" type="submit" value="submit" name="action">Voglio registrarmi</button>                 
               </form>
 
                
                 
-              <form action="user/pwd_generator_result.php" name='form' target="_blank">
+              <form action="user/pwd_generator_result.php" name='form' target="">
                 <p align="center">
                   <input type='submit' value='suggerisci password sicura' name='submit' class="btn btn-theme"/><br><br><br><br>
                 </p>
@@ -160,20 +162,20 @@ require 'user/pwd_generator_class.php';
       <div class="row">
         <div class="col s12 center">
           <i class="material-icons invita-icon red-text text-lighten-1">share</i>
-          <h3>Accedi e invita i tuoi amici alla tua chat</h3>
-         <h5 class="invita-subtitle col s12 light">Accedi e invita alla tua chat room
+          <h3>Accedi e chatta con i tuoi amici!</h3>
+         <h5 class="invita-subtitle col s12 light">Ogni chat è sicura
           <br>
-          Invia il link ai tuoi amici e inizia a chattare</h5>
+          Ogni messaggio è cifrato e segreto! </h5><i class="material-icons">privacy_tip</i>
           <div classe="row">
-	          <div class="input-field col s12 l6 offset-l3">
-		          <form action="user/login.php" method="POST" id="login-form" name="login-form" class="validate" target="_blank"> 
-			                <input id="username" type="text" name = "username" class="center white black-text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,32}" placeholder="Inserisci il tuo username">
-			                <input id="password" type="password"  name="password" class="center white black-text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Inserisci la tua password">
-			                <input type="hidden" name="login" value="login"/>
-		          			<button class="col l6 offset-l3 btn btn-invita waves-effect waves-light red lighten-1" type="submit" name="login">Accedi</button>
-		      		</form>
-		      </div>
-		   </div>
+            <div class="input-field col s12 l6 offset-l3">
+              <form action="otp/index.php" method="POST" id="login-form" name="login-form" class="validate" target="_blank"> 
+                      <input id="username" type="text" name = "username" class="center white black-text" pattern="(?=.*[a-z]).{4,32}" placeholder="Inserisci il tuo username">
+                      <input id="password" type="password"  name="password" class="center white black-text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Inserisci la tua password">
+                      <input type="hidden" name="login" value="login"/>
+                    <button class="col l6 offset-l3 btn btn-invita waves-effect waves-light red lighten-1" type="submit" name="login">Accedi</button>
+              </form>
+          </div>
+       </div>
         </div>
       </div>
 

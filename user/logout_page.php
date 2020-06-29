@@ -51,7 +51,7 @@ require "session_login.php";
     <?php
     session_destroy();
 
-    header("refresh:4; url=https://localhost/SecureWebPage-master/index.php");
+    header("refresh:4; url= ../index.php");
     ?>
 
 

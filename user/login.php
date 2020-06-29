@@ -1,12 +1,13 @@
 
 <?php
-error_reporting (0); // Do not show anything
 session_start();
+error_reporting (0); // Do not show anything
+
 include("../config.php");
 include('../database/function.php');
-//$username = $_POST['username'];
-//$password = $_POST['password'];
-  //require "session_loginChat.php";
+$username = $_POST['username'];
+$password = $_POST['password'];
+//require "session_login.php";
 ?>
 
 
@@ -21,7 +22,7 @@ include('../database/function.php');
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="icon" type="image/png" href="LogoUniud.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="../img/LogoUniud.png" sizes="32x32">
  <!-- GOOGLE FONTS  -->
   <link href="https://fonts.googleapis.com/css?family=Raleway|Satisfy" rel="stylesheet">
 
@@ -51,32 +52,11 @@ include('../database/function.php');
     </nav>
   </div>
 
-
-<!-- INTRO -->
-  <div id="index-banner" class="parallax-container">
-    <div class="section-intro no-pad-bot">
-      <div class="container">
-        <br><br>
-        <h1 class="header center white-text">Invita e chatta in maniera sicura.</h1>
-        <div class="row center">
-          <h5 class="header-subtitle col s12 light">Registrati e invita i tuoi amici</h5>
-        </div>
-        <div class="row center">
-          <a href="#servizio" id="" class="btn-large waves-effect waves-light red lighten-1">Scopri come funziona</a>
-        </div>
-        <br><br>
-
-      </div>
-    </div>
-    <div class="parallax"><img src="../img/background1.jpg" alt="Unsplashed background img 1"></div>
-  </div>
-
   <!-- Risultati chiamata -->
   <section id="content">
    <div class="container">
-      <h1>Account utente</h1>
       <h2>Pagina personale</h2>
-<?php
+  <?php
       //controllo campi completati
     if($username != "" && $password != ""){
       
@@ -90,7 +70,7 @@ include('../database/function.php');
         </div>';
         header( "refresh:3;url=../index.php" );
     }
-?>
+  ?>
 
     </div>
   </section>
