@@ -1,6 +1,6 @@
 <?php
 session_start();
-$utente = $_POST['username'];
+$utente =$_POST['username'];
 $pswd_utente = $_POST['password'];	
 $success = "";
 $error_message = "";
@@ -10,8 +10,10 @@ if(!empty($_POST["username"])) {
 	$row = $result->fetch_array(MYSQLI_ASSOC);
 	$count  = mysqli_num_rows($result);
 	if($count>0) {
+
 		// generate OTP
 		$otp = rand(100000,999999);
+		
 		// Send OTP
 		require_once("mail_function.php");
 		$mail_status = sendOTP($row['user_email'],$otp);
@@ -99,7 +101,9 @@ if(!empty($_POST["submit_otp"])) {
         <br><br>
 
         <?php 
+
 			if(!empty($success == 1)) { 
+
 		?>
 	<form name="frmUser" method="post" action="">
 		<div class="col s6 center">
@@ -116,7 +120,9 @@ if(!empty($_POST["submit_otp"])) {
 				</div>
 
 				<div class="tableheader">
-					<?php echo "<input type=\"hidden\" name=\"username\" value=  ".$utente."  />
+					<?php 
+					
+					echo "<input type=\"hidden\" name=\"username\" value=  ".$utente."  />
 				<input type=\"hidden\" name=\"password\" value= ".$pswd_utente."  />";?>
 					<input type="submit" name="submit_otp" value="Invia" class="col l6 offset-l3 btn btn-invita waves-effect waves-light red lighten-1">
 				</div>
@@ -126,6 +132,7 @@ if(!empty($_POST["submit_otp"])) {
 
 		<?php
 			} else if(!empty($success == 3)){
+
 				?>
 				<form name="frmUser" method="post" action="">
 					<div class="col s6 center">
@@ -150,6 +157,7 @@ if(!empty($_POST["submit_otp"])) {
 	</form>
 <?php 
 		} else if(!empty($success == 2)){
+
         ?>
         <div class="col s6 center">
 		

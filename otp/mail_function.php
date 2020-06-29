@@ -36,7 +36,7 @@ require 'PHPMailer/src/SMTP.php';
 			$mail->SMTPSecure = 'ssl'; // tls or ssl
 			$mail->Port     = 465;
 			$mail->Username = "Progetto.CS.2020@gmail.com";
-			$mail->Password = "owudljlaysiausnt";		
+			$mail->Password = "rijclymvpbfhzvyi";//"owudljlaysiausnt";		
 			$result = $mail->Send();	
 			return $result;
 	}

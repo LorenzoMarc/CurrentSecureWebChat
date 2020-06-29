@@ -3,6 +3,7 @@
 $username = $_POST['username'];
 $password = $_POST['password'];
 
+
 //funzione per la connessione al database
 function dbConnect() {
 	$db = mysqli_connect("127.0.0.1", "root", "", "chat_users");
@@ -19,7 +20,31 @@ function dbConnect() {
 
 //inserimento dati utente, password cifrata con brcrypt
 function inserisci_utente($username, $password, $email){
-	$conn=dbConnect();
+		$conn=dbConnect();
+
+
+		//questa forma è troppo lunga, siamo sulle migliaia di caratteri. 
+		//MAX 255
+	$config = array(
+    "digest_alg" => "sha512",
+    "private_key_bits" => 4096,
+    "private_key_type" => OPENSSL_KEYTYPE_RSA,
+	);
+
+	// Create the private and public key
+	$res = openssl_pkey_new($config);
+	// Extract the private key from $res to $privKey
+	openssl_pkey_export($res, $privKey);
+
+	// Extract the public key from $res to $pubKey
+	$pubKey = openssl_pkey_get_details($res);
+	$pubKey = $pubKey["key"];
+	$encodedpubKey = base64_encode($pubKey);
+
+	//Più avanti prova a inserire la chiave pubblica nel DB
+	// ma fallisce per la dimensione. stampa l'errore generico
+
+
 
 	//SQL INJECTION PROTECTION
 	$username = str_replace("'", "", $username);
@@ -31,7 +56,7 @@ function inserisci_utente($username, $password, $email){
 	}else{
 		$password = cipher_content($password);
 
-		$sql="INSERT INTO ch_users (user_username, user_password, user_email) VALUES ('". $username ."', '". $password ."', '". $email ."')";
+		$sql="INSERT INTO ch_users (user_username, user_password, user_email, pub_key) VALUES ('". $username ."', '". $password ."', '". $email ."','". $encodedpubKey ."')";
 		if(!$conn->query($sql)){  //stampo un errore
 			 echo '<h3><div class="alert alert-danger"><strong>Username già esistente</strong> </h3></div>';
 			 header( "refresh:3;url=../index.php" );
