@@ -12,7 +12,7 @@
 
 ::placeholder {
   color: #031D44;
-  opacity: 0.4; 
+  opacity: 0.5; 
 }
 
 nav ul a,
@@ -254,4 +254,11 @@ footer.page-footer {
   color: #DF001E;
     background: #ffb5b5;
     border: #c76969 1px solid;
+}
+
+.pub_key{
+  max-width: 60px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }

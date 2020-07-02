@@ -79,7 +79,17 @@ const DH_DEFAULT_GENERATOR = '02';
                 echo "<div class=\"profile_name\">".$_COOKIE['username']."</div>";
               ?>           
             </div>
+            <br>
+            <br>
             <div class="center">
+              <div>
+              <form action="index_chat.php" method="POST" id="chat-form" name="chat-form" class="validate" target="_blank"> 
+                <input type="hidden" name="pubKey" value="'.$user[4].'"/>                   
+                <button class="btn-large waves-effect waves-light red lighten-1" type="submit" name="chat">Unisciti alla chat!
+                </button>
+              </form>
+              </div>
+              <br>
               <h3>Lista degli utenti</h3>                
               <?php
                 //stampo la lista degli utenti
@@ -90,18 +100,14 @@ const DH_DEFAULT_GENERATOR = '02';
                             <tr>                      
                               <th>Username</th>
                               <th>Public Key</th>                    
-                              <th>Chat</th>
+      
                             </tr>
                         </div>';
                   foreach ($users as $user) {  //ad ogni iterazione il valore di $users (che è un array) viene assegnato a $user
                     echo '<tr>                       
                             <td>' . $user[1] . ' </td>
-                            <td>' .$user[4].'</td>                       
-                            <td> <form action="index_chat.php" method="POST" id="chat-form" name="chat-form" class="validate" target="_blank"> 
-                                  <input type="hidden" name="pubKey" value="'.$user[4].'"/>                   
-                                  <button class="btn-large waves-effect waves-light red lighten-1" type="submit" name="chat">Avvia una chat!</button>
-                                  </form>
-                            </td>
+                            <td class="pub_key">' .$user[4].'</td>                       
+                           
                           </tr>' ;
                   }
                   echo '</table>';
