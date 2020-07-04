@@ -1,6 +1,7 @@
 
 <?php
 require "session_login.php";
+error_reporting (0); // Do not show anything
 ?>
 
 

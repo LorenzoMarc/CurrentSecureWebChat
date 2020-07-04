@@ -30,9 +30,13 @@ input{
     position: center
 }
 
-#message {
+#message { 
   flex: 2
 
+}
+
+::placeholder{
+    color: #ea454b
 }
             
 .msg {

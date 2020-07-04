@@ -1,5 +1,5 @@
 <?php
-
+error_reporting (0); // Do not show anything
 class PwdGenerator{
 
   function randomPassword() {

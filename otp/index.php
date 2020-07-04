@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting (0); // Do not show anything
 $utente =$_POST['username'];
 $pswd_utente = $_POST['password'];	
 $success = "";
@@ -116,7 +117,7 @@ if(!empty($_POST["submit_otp"])) {
 
 					
 				<div class="input-field col s12 l6 offset-l3">
-					<input type="text" name="otp" placeholder="One Time Password" class="login-input" required>
+					<input type="text" name="otp" placeholder="One Time Password" pattern="(?=.*\d).{6,6}" class="login-input" required>
 				</div>
 
 				<div class="tableheader">
@@ -145,7 +146,7 @@ if(!empty($_POST["submit_otp"])) {
 
 					
 				<div class="input-field col s12 l6 offset-l3">
-					<input type="text" name="otp" placeholder="One Time Password" class="login-input" required>
+					<input type="text" name="otp" placeholder="One Time Password" pattern="(?=.*\d).{6,6}" class="login-input" required>
 				</div>
 
 				<div class="tableheader">
@@ -154,8 +155,8 @@ if(!empty($_POST["submit_otp"])) {
 					<input type="submit" name="submit_otp" value="Invia" class="col l6 offset-l3 btn btn-invita waves-effect waves-light red lighten-1">
 				</div>
 					</div>
-	</form>
-<?php 
+				</form>
+		<?php 
 		} else if(!empty($success == 2)){
 
         ?>
@@ -176,4 +177,5 @@ if(!empty($_POST["submit_otp"])) {
 	
 
 
-</body></html>
+</body>
+</html>

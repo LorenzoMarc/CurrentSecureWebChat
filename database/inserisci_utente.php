@@ -1,5 +1,5 @@
 <?php 
-//error_reporting (0); // Do not show anything
+error_reporting (0); // Do not show anything
 include("../config.php");
 include('function.php');
 

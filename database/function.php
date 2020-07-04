@@ -1,5 +1,5 @@
 <?php
-
+error_reporting (0); // Do not show anything
 $username = $_POST['username'];
 $password = $_POST['password'];
 
@@ -22,30 +22,6 @@ function dbConnect() {
 function inserisci_utente($username, $password, $email){
 		$conn=dbConnect();
 
-
-		//questa forma è troppo lunga, siamo sulle migliaia di caratteri. 
-		//MAX 255
-	$config = array(
-    "digest_alg" => "sha512",
-    "private_key_bits" => 4096,
-    "private_key_type" => OPENSSL_KEYTYPE_RSA,
-	);
-
-	// Create the private and public key
-	$res = openssl_pkey_new($config);
-	// Extract the private key from $res to $privKey
-	openssl_pkey_export($res, $privKey);
-
-	// Extract the public key from $res to $pubKey
-	$pubKey = openssl_pkey_get_details($res);
-	$pubKey = $pubKey["key"];
-	$encodedpubKey = base64_encode($pubKey);
-
-	//Più avanti prova a inserire la chiave pubblica nel DB
-	// ma fallisce per la dimensione. stampa l'errore generico
-
-
-
 	//SQL INJECTION PROTECTION
 	$username = str_replace("'", "", $username);
 	$password = str_replace("'", "", $username);
@@ -53,10 +29,10 @@ function inserisci_utente($username, $password, $email){
 	if ($inject_secure == 1) {
 		echo '<h3><div class="alert alert-danger"><strong>inserimento non valido</strong> </h3></div>';
 		 header( "refresh:30;url=../index.php" );
+
 	}else{
 		$password = cipher_content($password);
-
-		$sql="INSERT INTO ch_users (user_username, user_password, user_email, pub_key) VALUES ('". $username ."', '". $password ."', '". $email ."','". $encodedpubKey ."')";
+		$sql="INSERT INTO ch_users (user_username, user_password, user_email) VALUES ('". $username ."', '". $password ."', '". $email ."')";
 		if(!$conn->query($sql)){  //stampo un errore
 			 echo '<h3><div class="alert alert-danger"><strong>Username già esistente</strong> </h3></div>';
 			 header( "refresh:3;url=../index.php" );
@@ -144,8 +120,8 @@ function check_users($username, $password) {
 	$conn=dbConnect();
 
 	//SQL INJECTION PROTECTION
-	$username = str_replace("'", "", $username);
-	$password = str_replace("'", "", $username);
+	$username = str_replace("'"|"`", "", $username);
+	$password = str_replace("'"|"`", "", $username);
 	$inject_secure = preg_match('/\'|\*|\bSELECT\b|\bOR\b|\bWHERE\b|\bselect\b|\bor\b|\bwhere\b/', $username);
 
 	if ($inject_secure == 1) {

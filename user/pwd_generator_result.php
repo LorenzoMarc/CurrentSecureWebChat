@@ -1,6 +1,7 @@
 <?php
 require_once 'pwd_generator_class.php';
 //$keyVal = $_GET['key'];
+error_reporting (0); // Do not show anything
 ?>
 
 

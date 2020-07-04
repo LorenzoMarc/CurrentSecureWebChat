@@ -1,4 +1,5 @@
 <?php
+error_reporting (0); // Do not show anything
 
 $db = mysqli_connect("127.0.0.1", "root", "", "chat_users");
 if($db->connect_error){

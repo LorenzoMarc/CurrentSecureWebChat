@@ -1,5 +1,5 @@
 <?php	
-
+error_reporting (0); // Do not show anything
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
