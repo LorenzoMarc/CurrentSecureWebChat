@@ -9,6 +9,8 @@ $result = array();
 $message= isset($_POST['message']) ? $_POST['message'] : null;
 $sender = isset($_POST['sender']) ? $_POST['sender'] : null;
 
+
+
 /*
 $enc_message= openssl_encrypt($message, "AES-256-CBC", "ciao")
 */

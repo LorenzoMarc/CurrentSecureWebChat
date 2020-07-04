@@ -69,9 +69,14 @@ setcookie($receiver);
 
 
 <!-- Scripts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script>
-            var iv=0, sender = 0, enc_message = 0, start = 0, url = 'conn_chat.php';
+            var sender = 0,  start = 0, url = 'conn_chat.php';
+            var myPassword = "ciao";
+            var encrypted_text = 0;
+            var decrypted_text = 0;
             
             function getCookie(cname) {
                 var name = cname + "=";
@@ -88,55 +93,33 @@ setcookie($receiver);
                 }
                     return "";
             }
-/*
-            function getMessageEncoding() {
-                const messageBox = document.querySelector("#message");
-                let message = messageBox.value;
-                let enc = new TextEncoder();
-                return enc.encode(message);
-            }               
 
-
-            function encryptMessage(key) {
-                let encoded = getMessageEncoding();
-                // iv will be needed for decryption
-                iv = window.crypto.getRandomValues(new Uint8Array(16));
-                return window.crypto.subtle.encrypt(
-                {
-                    name: "AES-CBC",
-                    iv
-                },
-                key,
-                encoded
-                ) ;
-            }
-           */
 
             $(document).ready(function(){
                 sender=getCookie('username');                
                 load();
-             //  iv = window.crypto.getRandomValues(new Uint8Array(16));
-                $('form').submit(function(e){
+                
+                $('form').on("submit", function(event){
+                  //event.preventDefault();
+                  var message = $('#message').val();
+                  
+                  var encrypted = CryptoJS.AES.encrypt(message, myPassword).toString();
+                
                     $.post(url, {
-                 /*      message: crypto.subtle.encrypt({
-                    name: "AES-CBC",
-                    iv
-                },"ciao",$('#message').val()),*/
-
-                        //message: CryptoJS.AES.encrypt($('#message').val(), "ciao"),
-                       message:$('#message').val(),
-                        sender: sender
+                          message: encrypted,
+                          sender: sender
                     });
-                    $('#message').val('');
-                    return false;
-                })
-            });
+                   $('#message').val('');
+                   return false;
+                });
+              });
 
             function load(){
                 $.get(url + '?start=' + start, function(result){
                     if (result.items) {
                         result.items.forEach(item => {
-                            start = item.id;                           
+                            start = item.id;
+                            
                             $('#messages').append(renderMessage(item));
                         });
                         $('#messages').animate({scrollTop: $('#messages')[0].scrollHeight});
@@ -148,18 +131,13 @@ setcookie($receiver);
             function renderMessage(item){
                 let time= new Date(item.created);
                 time= `${time.getHours()}:${time.getMinutes()}`;
-              //  if(item.sender == sender){
-                    return `<div class="msg"><p>${item.sender}</p>${item.message}<span>${time}</span></div>`;
-              //  }else{
-                  //  return `<div class="msg_receiver"><p>${item.receiver}</p>${item.message}<span>${time}</span></div>`;
-                }
-           // }
-/*
-             function renderMessage(item){
-                let time= new Date(item.created);
-                time= `${time.getHours()}:${time.getMinutes()}`;
+                
+                
+                decrypted_text = CryptoJS.AES.decrypt(item.message, myPassword).toString(CryptoJS.enc.Utf8);
+                item.message = decrypted_text;           
                 return `<div class="msg"><p>${item.sender}</p>${item.message}<span>${time}</span></div>`;
-            }*/
+                }
+    
     </script>
 
 
