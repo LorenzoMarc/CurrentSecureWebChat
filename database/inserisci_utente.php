@@ -7,6 +7,10 @@ include('function.php');
 	$password = $_POST['password'];
   $password_2 = $_POST['password_2'];
 	$email = $_POST['email'];
+
+  $username = htmlspecialchars($username);
+  $password = htmlspecialchars($password);
+  $password_2 = htmlspecialchars($password_2);
 ?>
 
 

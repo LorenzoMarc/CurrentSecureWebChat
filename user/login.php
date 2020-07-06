@@ -7,6 +7,8 @@ include("../config.php");
 include('../database/function.php');
 $username = $_POST['username'];
 $password = $_POST['password'];
+$username = htmlspecialchars($username);
+$password = htmlspecialchars($password);
 //require "session_login.php";
 ?>
 

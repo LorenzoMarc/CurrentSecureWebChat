@@ -2,12 +2,14 @@
 session_start();
 error_reporting (0); // Do not show anything
 $utente =$_POST['username'];
+$utente = htmlspecialchars($utente);
 $pswd_utente = $_POST['password'];	
+$pswd_utente = htmlspecialchars($pswd_utente);
 $success = "";
 $error_message = "";
-$conn = mysqli_connect("localhost","root","","chat_users");
-if(!empty($_POST["username"])) {
-	$result = mysqli_query($conn,"SELECT user_email FROM ch_users WHERE user_username='" . $_POST["username"] . "'");
+$conn = mysqli_connect("localhost","root","i2RwHRI3D0ufvGsb","chat_users");
+if(!empty($utente)) {
+	$result = mysqli_query($conn,"SELECT user_email FROM ch_users WHERE user_username='" . $utente . "'");
 	$row = $result->fetch_array(MYSQLI_ASSOC);
 	$count  = mysqli_num_rows($result);
 	if($count>0) {
