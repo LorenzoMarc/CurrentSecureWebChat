@@ -42,17 +42,10 @@ require "session_login.php";
                 <input  type="text" id="message" class="col s12 l6 offset-l3 " autocomplete="off" autofocus placeholder="Scrivi un messaggio...">
                 
                 <input class="btn-large waves-effect waves-light red lighten-1" type="submit" value="Invia">
-                
+                  <!--
                 <input type="checkbox" id="autodelete" name="autodelete">
                 <label for="autodelete">Cancella dopo 10 sec</label>
-
-                            <!--
-                <input type="radio" id="save" name="autodelete" value="0" checked>
-                <label for="save">Non cancellare</label> 
-              
-                <input type="radio" id="autodelete"  name="autodelete" value="1">
-                <label for="autodelete">Cancella dopo 10 sec</label> -->
-                
+                -->
             </form>
         </div>
     

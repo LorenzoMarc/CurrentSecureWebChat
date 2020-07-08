@@ -13,9 +13,6 @@ require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
 	function sendOTP($email,$otp) {
-		/*
-		include_once('PHPMailer/src/PHPMailer.php');
-  		include_once('PHPMailer/src/SMTP.php');*/
 		
 		$message_body = "Grazie per esserti registrato! </br> Inseririsci il codice OTP seguente per poter accedere al sito:<br/><br/>" . $otp;
 		$mail = new PHPMailer();
@@ -27,7 +24,6 @@ require 'PHPMailer/src/SMTP.php';
 			$mail->MsgHTML($message_body);
 			$mail->IsHTML(true);
 			
-
 			/*STMP parameteres*/
 			$mail->isSMTP();
 			$mail->Host = "smtp.gmail.com";

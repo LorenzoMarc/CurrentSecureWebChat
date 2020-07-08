@@ -10,11 +10,11 @@ $result = array();
 $message= isset($_POST['message']) ? $_POST['message'] : null;
 $sender = isset($_POST['sender']) ? $_POST['sender'] : null;
 
- $autodelete = isset($_POST['autodelete']) ? $_POST['autodelete'] : null;
+ //$autodelete = isset($_POST['autodelete']) ? $_POST['autodelete'] : null;
 
 
 if(!empty($message) && !empty($sender) && !empty($autodelete)){
-    $sql = "INSERT INTO chat (message, sender, autodelete) VALUES ('".$message."','".$sender."','".$autodelete."')";
+    $sql = "INSERT INTO chat (message, sender) VALUES ('".$message."','".$sender."')";
     $result['send_status'] = $db->query($sql);
 }
 
