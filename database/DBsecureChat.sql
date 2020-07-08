@@ -32,6 +32,7 @@ CREATE TABLE `chat` (
   `message` varchar(255) NOT NULL,
   `sender` varchar(128) NOT NULL,
   `created` timestamp NOT NULL DEFAULT current_timestamp()
+  `autodelete` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

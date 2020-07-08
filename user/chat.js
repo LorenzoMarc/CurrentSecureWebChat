@@ -32,11 +32,20 @@
                 
                 $('form').on("submit", function(event){
                   event.preventDefault();                 
-                  var message = $('#message').val();         
+                    if ($('#autodelete').is(":checked")){
+                          // it is checked
+                          var autodelete = 'delete';                          
+                        }else{
+                            var autodelete ='save';
+                        }          
+                  var message = $('#message').val();
                   var encrypted = CryptoJS.AES.encrypt(message, myPassword).toString();         
+                    
+                  
                     $.post(url, {
                         message: encrypted,
-                        sender: sender
+                        sender: sender,
+                        autodelete: autodelete
                     });
                    $('#message').val('');
                    return false;

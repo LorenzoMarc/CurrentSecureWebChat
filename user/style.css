@@ -60,3 +60,10 @@ input{
     margin-left: 15px
 }    
            
+label {
+    color: black;
+}
+
+#autodelete{
+    color: black;
+}
