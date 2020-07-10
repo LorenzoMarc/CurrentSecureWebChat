@@ -7,7 +7,7 @@ $pswd_utente = $_POST['password'];
 $pswd_utente = htmlspecialchars($pswd_utente);
 $success = "";
 $error_message = "";
-$conn = mysqli_connect("localhost","root","i2RwHRI3D0ufvGsb","secureWebChat");
+$conn = mysqli_connect("localhost","root","","secureWebChat");
 if(!empty($utente)) {
 	$result = mysqli_query($conn,"SELECT user_email FROM ch_users WHERE user_username='" . $utente . "'");
 	$row = $result->fetch_array(MYSQLI_ASSOC);

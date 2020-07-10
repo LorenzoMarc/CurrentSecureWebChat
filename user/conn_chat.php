@@ -1,7 +1,7 @@
 <?php
 error_reporting (0); // Do not show anything
 
-$db = mysqli_connect("127.0.0.1", "root", "i2RwHRI3D0ufvGsb", "secureWebChat");
+$db = mysqli_connect("127.0.0.1", "root", "", "secureWebChat");
 if($db->connect_error){
     die("Connection failed: ". $db->connect_error);       
 }

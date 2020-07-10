@@ -6,7 +6,7 @@ $password = $_POST['password'];
 
 //funzione per la connessione al database
 function dbConnect() {
-	$db = mysqli_connect("127.0.0.1", "root", "i2RwHRI3D0ufvGsb", "secureWebChat");
+	$db = mysqli_connect("127.0.0.1", "root", "", "secureWebChat");
 
 	if (!$db) {
 	    echo "Error: Unable to connect to MySQL." . PHP_EOL;
